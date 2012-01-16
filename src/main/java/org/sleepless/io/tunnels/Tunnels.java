@@ -15,8 +15,10 @@ import java.awt.event.ActionListener;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Collections;
 import java.util.List;
 
@@ -120,8 +122,44 @@ public class Tunnels {
     }
     
     private void editConfig(){
-        try{
+        
+        if(!configFile.exists()) {
+            
+            InputStream in = null;
+            OutputStream out = null;
+            
+            try {
+                in = getClass().getResourceAsStream("/config.properties.template");
+                
+                configFile.createNewFile();
+                out = new FileOutputStream(configFile);
+                
+                byte[] buf = new byte[1024];
+                int l;
+                
+                while((l = in.read(buf)) != -1) {
+                    
+                    out.write(buf, 0, l);
+                    
+                }
+                
+            } catch(IOException e) {
+                
+                trayIcon.displayMessage("ERROR", "Error creating new config.properties file", MessageType.ERROR);
+                
+            } finally {
+                
+                if(in != null) try{ in.close(); } catch(IOException e){}
+                if(out != null) try{ out.close(); } catch(IOException e){}
+                
+            }
+        }
+        
+        
+        try {
+            
             Desktop.getDesktop().edit(configFile);
+            
         } catch(IOException e) {
             throw new IllegalStateException(e);
         }
