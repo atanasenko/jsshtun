@@ -1,0 +1,11 @@
+hosts.1.name = <host>
+hosts.1.port = <port>
+hosts.1.userInfo.name = <user>
+hosts.1.localTunnels.1 = port:host:port
+#hosts.1.localTunnels.2 = ...
+
+#hosts.2.name = someplace2
+#hosts.2.port = 3003
+#hosts.2.userInfo.name = 
+#hosts.2.keepAliveInterval = 10000
+#hosts.2.localTunnels.1 = ...

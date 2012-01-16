@@ -4,4 +4,11 @@
   <artifactId>jsshtun</artifactId>
   <version>1.0-SNAPSHOT</version>
   <description>	</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>com.jcraft</groupId>
+  		<artifactId>jsch</artifactId>
+  		<version>0.1.45</version>
+  	</dependency>
+  </dependencies>
 </project>
